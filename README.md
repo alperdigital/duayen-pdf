@@ -29,3 +29,6 @@ Doğrudan Chromium kabul akışı: önizleme sunucusu açıkken
 `CHROMIUM_PATH=/usr/bin/chromium npm run test:smoke`.
 Bu akış masaüstü ve 390px mobil boyutunda gerçek çevrimdışı OCR,
 optik değişikliği, kalem ve yeniden açma senaryosunu sınar.
+
+## Öğrenci akışı
+PDF yüklenince numaralı sorular otomatik ayrılır; taranmış sayfalar için OCR paketi hazırsa işlem kendiliğinden başlar. Öğrenci bölge çizmez. Yalnız gerektiğinde öğretmen modu ile düzeltilebilir. Yeni optik satırı 320, 390 ve 1280 CSS piksel genişliklerde sınamak için önizleme açıkken `node scripts/student-smoke.mjs` çalıştırın.
