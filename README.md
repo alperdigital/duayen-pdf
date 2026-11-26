@@ -24,3 +24,8 @@ kişisel yedek JSON olarak indirilir. Paket öğrenci verisi içermez.
 public/examples altında özgün metin ve tarama PDF'leri bulunur.
 `python scripts/fixtures.py` ile tekrar üretilebilir.
 `npm test` üretim önizlemesini gerçek Chromium ile test eder.
+
+Doğrudan Chromium kabul akışı: önizleme sunucusu açıkken
+`CHROMIUM_PATH=/usr/bin/chromium npm run test:smoke`.
+Bu akış masaüstü ve 390px mobil boyutunda gerçek çevrimdışı OCR,
+optik değişikliği, kalem ve yeniden açma senaryosunu sınar.

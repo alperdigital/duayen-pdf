@@ -1,5 +1,5 @@
 import {chromium} from 'playwright';
-const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--no-sandbox']});
+const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||undefined,args:['--no-sandbox']});
 try{for(const viewport of [{width:1280,height:900},{width:390,height:844}]){
 const context=await browser.newContext({viewport});let p=await context.newPage();p.on('pageerror',e=>console.log('page error',e.message));const req=[];p.on('request',r=>req.push(r.url()));
 await p.goto('http://127.0.0.1:3000/peru/');await p.evaluate(()=>navigator.serviceWorker.ready.then(()=>true));if(req.some(x=>x.includes('traineddata')))throw Error('early OCR download');
