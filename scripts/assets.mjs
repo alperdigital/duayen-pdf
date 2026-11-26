@@ -1,11 +1,12 @@
 import {cp,mkdir,readdir,readFile,writeFile,stat} from 'node:fs/promises';
+import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 const dest='dist/ocr/v1';await mkdir(dest,{recursive:true});
 await cp('node_modules/tesseract.js/dist/worker.min.js',dest+'/worker.min.js');
 for(const f of await readdir('node_modules/tesseract.js-core'))if(/\.wasm(\.js)?$/.test(f))await cp('node_modules/tesseract.js-core/'+f,dest+'/'+f);
 async function walk(dir){const out=[];for(const f of await readdir(dir)){const p=dir+'/'+f;if((await stat(p)).isDirectory())out.push(...await walk(p));else out.push(p)}return out}
 const model=(await walk('node_modules/@tesseract.js-data/tur')).find(f=>f.endsWith('tur.traineddata.gz'));if(!model)throw Error('Türkçe model bulunamadı');
-await cp(model,dest+'/tur.traineddata.gz');
+await writeFile(dest+'/tur.traineddata',gunzipSync(await readFile(model)));
 const manifest=[];for(const file of await readdir(dest)){const b=await readFile(dest+'/'+file);manifest.push({file,size:b.length,sha256:createHash('sha256').update(b).digest('hex')})}await writeFile(dest+'/manifest.json',JSON.stringify(manifest));
 await mkdir('dist/pdf',{recursive:true});await cp('node_modules/pdfjs-dist/cmaps','dist/pdf/cmaps',{recursive:true});await cp('node_modules/pdfjs-dist/standard_fonts','dist/pdf/fonts',{recursive:true});
 const files=(await walk('dist')).filter(f=>!f.startsWith('dist/ocr/')||f.endsWith('/manifest.json')).map(f=>f.slice(5));const rev=createHash('sha256').update(await readFile('dist/index.html')).digest('hex').slice(0,12);
