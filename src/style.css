@@ -28,3 +28,33 @@ input[type=checkbox]{display:inline;width:44px;vertical-align:middle}
 .question-chips span{border:1px solid #bfd5c8;padding:8px 12px;border-radius:8px;background:#e9f2eb;font-weight:600}
 .start-button{width:100%;font-weight:800;margin:12px 0}
 @media(max-width:390px){.optical .bubbles{gap:5px}.optical-number{min-width:24px}.exam-tools button{padding:4px 6px}}
+
+/* Exam mode: the page is paper, the optical strip is the only navigation. */
+.exam-main{height:100dvh;max-width:800px;padding:5px 8px 0;display:flex;flex-direction:column;overflow:hidden;background:#fff}
+.exam-main .topline{position:static;flex:none;border:0;box-shadow:none;padding:0 3px;min-height:44px;font-size:13px;gap:8px}
+.exam-main .topline button{border:0;background:transparent;font-size:26px;line-height:1;padding:0;margin:0}
+.exam-main .topline strong{flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;text-align:center}
+.exam-main .exam-tools{flex:none;background:#fff;border:0;border-bottom:1px solid #e6e9e6;border-radius:0;padding:0 0 3px;justify-content:center;gap:4px}
+.exam-main .exam-tools button{background:transparent;border:1px solid transparent;border-radius:7px;color:#62746e;font-size:12px;padding:3px 8px}
+.exam-main .exam-tools button[aria-pressed=true]{color:#176b59;background:#eaf3ef;border-color:#d4e5dc}
+.exam-main .questionScroll{flex:1;min-height:0;margin:0;border:0;border-radius:0;overscroll-behavior:contain}
+.question-sheet{min-height:100%;display:flex;flex-direction:column}
+.question-sheet>.paper:last-child{flex:1;min-height:180px;display:flex}
+.exam-main .work{flex:1;height:auto;min-height:180px;color:#a7b2ad;font-size:12px;background:repeating-linear-gradient(white 0 31px,#eef0ed 32px)}
+.exam-main .optical{position:static;flex:none;margin:0 -8px;padding:0 8px max(5px,env(safe-area-inset-bottom));background:#fcfaf4;box-shadow:none;border-top:1px solid #d4d2c7}
+.question-flags{display:flex;justify-content:space-between;gap:2px;align-items:center;border-bottom:1px solid #e5e2d9}
+.question-flags button{flex:1;min-width:0;min-height:44px;font-size:clamp(9px,2.6vw,12px);font-weight:500;white-space:nowrap;padding:0 2px;margin:0;border:0;border-radius:4px;background:transparent;color:#68736a}
+.question-flags button[aria-pressed=true]{color:#176b59;background:#e2eee6;font-weight:800}
+.optical-heading{align-items:center;gap:5px;padding:0 2px;min-height:44px;letter-spacing:0;font-size:11px}
+.optical-title{letter-spacing:.06em;white-space:nowrap}
+.optical-title b{font-size:15px;margin-left:3px;color:#292c2a}
+.exam-clock{font-variant-numeric:tabular-nums;white-space:nowrap;font-size:12px;color:#173b39}
+.exam-clock small{font-size:10px;color:#64746c;font-weight:500}
+.answer-status{margin-left:auto;white-space:nowrap;font-size:10px}
+.clear-answer{font-size:11px;background:transparent;border:0;color:#176b59;padding:0;margin:0;min-width:44px}
+.optical-row{display:flex;align-items:center;justify-content:center;gap:0;border-block:1px solid #bdbbb0}
+.optical .bubbles{flex:1;max-width:480px;margin:0;border:0;justify-content:space-evenly;gap:0;padding:4px 0;min-width:0}
+.optical .bubbles button{flex:0 0 clamp(44px,11vw,58px);height:clamp(44px,11vw,58px);width:clamp(44px,11vw,58px);font-size:19px}
+.optical-row .arrow{border:0;margin:0;padding:0;background:transparent;color:#30352f;font-size:32px;line-height:1;flex:0 0 44px}
+.optical .finish{min-height:44px;font-weight:700;color:#176b59}
+@media(max-width:340px){.exam-main{padding-inline:4px}.exam-main .optical{margin-inline:-4px;padding-inline:4px}.optical-heading{gap:2px}.exam-clock{font-size:11px}.answer-status{font-size:9px}.exam-clock small{font-size:9px}}

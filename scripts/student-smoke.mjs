@@ -17,7 +17,16 @@ for(const width of [320,390,1280]){
  await p.getByRole('button',{name:'Cevabı temizle'}).click();
  if(await p.getByRole('radio',{checked:true}).count())throw Error('clear failed');
  await p.getByRole('radio',{name:'B',exact:true}).click();
+ await p.getByRole('button',{name:'Favori',exact:true}).click();
+ await p.getByRole('button',{name:'Zaman alır',exact:true}).click();
+ if(await p.locator('.question-flags button[aria-pressed=true]').count()!==1)throw Error('flags not exclusive');
+ if(await p.getByRole('button',{name:'Denemeyi bitir'}).count())throw Error('finish shown early');
+ const footer=await p.locator('.optical').boundingBox();const paper=await p.locator('.questionScroll').boundingBox();
+ if(!footer||!paper||paper.y+paper.height>footer.y+1||footer.y+footer.height>845)throw Error('optical overlaps worksheet');
  await p.screenshot({path:'/tmp/denemeye-'+width+'.png'});
+ for(let i=0;i<3;i++)await p.getByRole('button',{name:'Sonraki →'}).click();
+ await p.getByRole('button',{name:'Denemeyi bitir'}).click();
+ await p.getByRole('heading',{name:'Deneme özeti'}).waitFor();
  console.log('PASS automatic four questions and optical',width);
  await p.close();
 }
