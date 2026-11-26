@@ -32,3 +32,6 @@ optik değişikliği, kalem ve yeniden açma senaryosunu sınar.
 
 ## Öğrenci akışı
 PDF yüklenince numaralı sorular otomatik ayrılır; taranmış sayfalar için OCR paketi hazırsa işlem kendiliğinden başlar. Öğrenci bölge çizmez. Yalnız gerektiğinde öğretmen modu ile düzeltilebilir. Yeni optik satırı 320, 390 ve 1280 CSS piksel genişliklerde sınamak için önizleme açıkken `node scripts/student-smoke.mjs` çalıştırın.
+
+## Öğrenme geçmişi
+Soru geçişinde cevaplı sorular için Eminim / Kararsızım / Tahmin ettim, boş sorular için Zaman lazım / Bilmiyorum / Atladım seçilir; isteğe bağlıdır ve deneme ayarlarında kapatılabilir. Başlangıçta geri bildirim zamanı seçilir. Anlık geri bildirimde soru tamamlanınca doğrulanmış anahtar gösterilir ve cevap kilitlenir. Öğrenme listesi son tamamlanmış girişime göre kalıcı soru kimlikleriyle sınıflandırılır. Anladım ile arşive taşınır; arşivi temizlemek deneme geçmişini silmez.

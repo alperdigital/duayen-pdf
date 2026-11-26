@@ -3,7 +3,7 @@ export type Question={id:string,section:string,number:number,labels:string[],ima
 export type Bank={id:string,title:string,questions:Question[]};
 export type Point=[number,number];
 export type Stroke={part:number,points:Point[]};
-export type Attempt={id:string,bank:Bank,index:number,answers:Record<string,string>,ink:Record<string,Stroke[]>,flags:Record<string,string[]>,times:Record<string,number>,start:number,end:number|null,finished?:number};
+export type Attempt={id:string,bank:Bank,index:number,answers:Record<string,string>,ink:Record<string,Stroke[]>,flags:Record<string,string[]>,times:Record<string,number>,start:number,end:number|null,finished?:number,feedback?:'instant'|'end',prompt?:boolean,checked?:Record<string,boolean>};
 export const uid=()=>crypto.randomUUID();
 const db=new Promise<IDBDatabase>((resolve,reject)=>{const r=indexedDB.open('denemeye',1);r.onupgradeneeded=()=>r.result.createObjectStore('data');r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)});
 export async function read<T>(key:string):Promise<T|undefined>{const d=await db;return new Promise((resolve,reject)=>{const r=d.transaction('data').objectStore('data').get(key);r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)})}
