@@ -1,0 +1,11 @@
+import {createWorker} from 'tesseract.js';
+const base=new URL(import.meta.env.BASE_URL,location.origin);
+const root=new URL('ocr/v1/',base);
+const cacheName='denemeye-ocr-v1';
+type Asset={file:string,size:number,sha256:string};
+const manifest=async():Promise<Asset[]>=>{const r=await fetch(new URL('manifest.json',root));if(!r.ok)throw Error('OCR listesi alınamadı');return r.json()};
+export async function ready(){try{const c=await caches.open(cacheName);return !!await c.match(new URL('complete',root))}catch{return false}}
+export async function remove(){await caches.delete(cacheName)}
+export async function size(){return (await manifest()).reduce((s,a)=>s+a.size,0)}
+export async function install(signal:AbortSignal,progress:(done:number,total:number)=>void){await remove();const files=await manifest();const total=files.reduce((s,a)=>s+a.size,0);let done=0;const c=await caches.open(cacheName);try{for(const a of files){const url=new URL(a.file,root);const r=await fetch(url,{signal,cache:'no-store'});if(!r.ok||!r.body)throw Error('İndirme başarısız');const reader=r.body.getReader();const chunks:Uint8Array<ArrayBuffer>[]=[];let count=0;while(true){const x=await reader.read();if(x.done)break;chunks.push(new Uint8Array(x.value));count+=x.value.length;progress(done+count,total)}const blob=new Blob(chunks);const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',await blob.arrayBuffer()))).map(x=>x.toString(16).padStart(2,'0')).join('');if(hash!==a.sha256||count!==a.size)throw Error('Dosya bütünlüğü doğrulanamadı');await c.put(url,new Response(blob,{headers:r.headers}));done+=count}if(signal.aborted)throw Error('İptal edildi');await c.put(new URL('complete',root),new Response('ok'))}catch(e){await remove();throw e}}
+export async function recognize(images:string[],onPage:(text:string,i:number)=>void){if(!await ready())throw Error('Türkçe OCR paketini indirin');const worker=await createWorker('tur',1,{workerPath:new URL('worker.min.js',root).href,corePath:root.href,langPath:root.href,cacheMethod:'none',workerBlobURL:false});try{for(let i=0;i<images.length;i++){const {data}=await worker.recognize(images[i]);onPage(data.text,i)}}finally{await worker.terminate()}}
