@@ -29,6 +29,7 @@ jobs:
           node scripts/learning-smoke.mjs
           node scripts/key-smoke.mjs
           node scripts/key-ocr-smoke.mjs
+          node scripts/design-smoke.mjs
       - uses: actions/configure-pages@v5
         if: github.event_name != 'pull_request'
         with:

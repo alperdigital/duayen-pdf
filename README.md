@@ -1,4 +1,4 @@
-# PDF’den Denemeye
+# Duayenpdf (PDF’den Denemeye)
 Türkçe, yerel verili, statik soru çözme uygulaması.
 
 ## Kurulum
