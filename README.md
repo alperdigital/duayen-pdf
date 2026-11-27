@@ -35,3 +35,6 @@ PDF yüklenince numaralı sorular otomatik ayrılır; taranmış sayfalar için 
 
 ## Öğrenme geçmişi
 Soru geçişinde cevaplı sorular için Eminim / Kararsızım / Tahmin ettim, boş sorular için Zaman lazım / Bilmiyorum / Atladım seçilir; isteğe bağlıdır ve deneme ayarlarında kapatılabilir. Başlangıçta geri bildirim zamanı seçilir. Anlık geri bildirimde soru tamamlanınca doğrulanmış anahtar gösterilir ve cevap kilitlenir. Öğrenme listesi son tamamlanmış girişime göre kalıcı soru kimlikleriyle sınıflandırılır. Anladım ile arşive taşınır; arşivi temizlemek deneme geçmişini silmez.
+
+## Otomatik cevap anahtarı
+PDF metni konuma göre satırlara ayrılır. OCR tarama sayfalarını okur. Test/bölüm kimliği ve basılı soru numarasına göre anahtar önerilir. Desteklenen biçimler: numara-şık dizileri (1-A, 2:B, 3) C), dikey numara/şık çiftleri, yatay numara ve şık satırları, açık numara aralığı (1-4: A B C D). Çelişkili ve eksik eşleşmeler puanlanmaz; otomatik öneriler kullanıcı doğrulaması gerektirir. Sadece harf dizileri gibi numarası belirsiz anahtarlar otomatik dağıtılmaz. Üç özgün örnek PDF public/examples altında bulunur.

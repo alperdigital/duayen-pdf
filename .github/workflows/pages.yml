@@ -19,6 +19,7 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npx playwright install --with-deps chromium
+      - run: node --experimental-strip-types scripts/key-unit.mjs
       - run: npm test
       - run: |
           npm run preview &
@@ -26,6 +27,8 @@ jobs:
           node scripts/extra-smoke.mjs
           node scripts/student-smoke.mjs
           node scripts/learning-smoke.mjs
+          node scripts/key-smoke.mjs
+          node scripts/key-ocr-smoke.mjs
       - uses: actions/configure-pages@v5
         if: github.event_name != 'pull_request'
         with:

@@ -1,5 +1,5 @@
-export type Region={page:number,x:number,y:number,w:number,h:number};
-export type Question={id:string,section:string,number:number,labels:string[],images:string[],regions?:Region[],answer?:string,objective?:string,solution?:string};
+export type Region={page:number,x:number,y:number,w:number,h:number,number?:number,test?:string};
+export type Question={id:string,section:string,number:number,sourceNumber?:number,sourceTest?:string,labels:string[],images:string[],regions?:Region[],answer?:string,objective?:string,solution?:string};
 export type Bank={id:string,title:string,questions:Question[]};
 export type Point=[number,number];
 export type Stroke={part:number,points:Point[]};
