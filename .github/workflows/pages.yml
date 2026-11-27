@@ -23,7 +23,7 @@ jobs:
       - run: npm test
       - run: |
           npm run preview &
-          for i in {1..30}; do curl -fsS http://127.0.0.1:3000/peru/ >/dev/null && break; sleep 1; done
+          for i in {1..30}; do curl -fsS http://127.0.0.1:3000/duayen-pdf/ >/dev/null && break; sleep 1; done
           node scripts/extra-smoke.mjs
           node scripts/student-smoke.mjs
           node scripts/learning-smoke.mjs

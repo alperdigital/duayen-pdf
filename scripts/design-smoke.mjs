@@ -4,7 +4,7 @@ const b=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||undefin
 try{
 for(const width of [320,390,1280]){
  const p=await b.newPage({viewport:{width,height:844}});
- await p.goto('http://127.0.0.1:3000/peru/');
+ await p.goto('http://127.0.0.1:3000/duayen-pdf/');
  await p.getByRole('heading',{name:/Her soru/}).waitFor();
  assert.equal(await p.title(),'Duayenpdf — Her soru, bir adım ileri');
  const fits=()=>p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth);

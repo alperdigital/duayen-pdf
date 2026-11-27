@@ -7,7 +7,7 @@ test('otomatik çevrimdışı OCR, kalem, optik, devam',async({page,context})=>{
  await page.getByRole('button',{name:'Türkçe OCR paketini indir'}).click();
  await expect(page.getByText('● Türkçe OCR hazır',{exact:false})).toBeVisible({timeout:150000});
  await page.close();await context.setOffline(true);
- const p=await context.newPage();await p.goto('http://127.0.0.1:3000/peru/');
+ const p=await context.newPage();await p.goto('http://127.0.0.1:3000/duayen-pdf/');
  await p.locator('input[type=file]').first().setInputFiles('public/examples/tarama.pdf');
 
  await p.getByText('Metin / OCR çıktısı').click();

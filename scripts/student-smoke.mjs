@@ -3,7 +3,7 @@ const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||u
 try{
 for(const width of [320,390,1280]){
  const p=await browser.newPage({viewport:{width,height:844}});
- await p.goto('http://127.0.0.1:3000/peru/');
+ await p.goto('http://127.0.0.1:3000/duayen-pdf/');
  await p.locator('input[type=file]').first().setInputFiles('public/examples/metin.pdf');
  await p.getByRole('heading',{name:'4 soru bulundu'}).waitFor();
  if(await p.locator('.editor').count())throw Error('manual editor visible');

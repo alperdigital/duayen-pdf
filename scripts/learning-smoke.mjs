@@ -2,7 +2,7 @@ import {chromium} from 'playwright';
 const b=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||undefined,args:['--no-sandbox']});
 try{
 const p=await b.newPage({viewport:{width:390,height:844}});
-await p.goto('http://127.0.0.1:3000/peru/');
+await p.goto('http://127.0.0.1:3000/duayen-pdf/');
 await p.locator('input[type=file]').first().setInputFiles('public/examples/metin.pdf');
 await p.getByRole('heading',{name:'4 soru bulundu'}).waitFor();
 await p.getByText('İsteğe bağlı cevap anahtarı').click();

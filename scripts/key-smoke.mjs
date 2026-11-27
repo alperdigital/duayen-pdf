@@ -4,7 +4,7 @@ const b=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||undefin
 try{
 for(const [file,range,expected] of [['gorselli-iki-test.pdf','1-4',['C','D','D','B','C','B','E','B']],['gorselli-iki-test.pdf','3-4',['C','B','E','B']],['gorselli-tablo-anahtar.pdf','1-4',['C','D','D','B','C','B','E','B']]]){
  const p=await b.newPage({viewport:{width:390,height:844}});
- await p.goto('http://127.0.0.1:3000/peru/');
+ await p.goto('http://127.0.0.1:3000/duayen-pdf/');
  await p.locator('input[type=file]').first().setInputFiles('public/examples/'+file);
  await p.getByRole('heading',{name:'8 soru bulundu'}).waitFor();
  await p.getByLabel('Sayfa aralığı').fill(range);

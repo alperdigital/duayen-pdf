@@ -3,7 +3,7 @@ Türkçe, yerel verili, statik soru çözme uygulaması.
 
 ## Kurulum
 Node 22+ ile `npm install`, `npm run build`, `npm run preview`.
-Üretim adresi yerelde /peru/ altındadır. GitHub Pages kaynağı GitHub Actions
+Üretim adresi yerelde /duayen-pdf/ altındadır. GitHub Pages kaynağı GitHub Actions
 olmalıdır. Ana dalın workflow’u test ve dağıtımı yürütür.
 
 ## Uçak modu
